@@ -31,7 +31,7 @@ public class Stack {
     
     public boolean empty()
     {
-        if (sp == tamaño)
+        if (this.sp == this.tamaño)
             return true;
         else
             return false;
@@ -39,7 +39,7 @@ public class Stack {
     
     public int top()
     {
-        if (sp < tamaño)
+        if (this.sp < this.tamaño)
             return datos[sp];        
         else
             return (' ');
@@ -48,7 +48,7 @@ public class Stack {
     public int pop()
     {
         int temp = 0;
-        if ((sp < tamaño) && (sp > 0))
+        if ((this.sp < this.tamaño) && (this.sp > 0))
         {            
             sp++;
             temp = datos[sp];
@@ -63,7 +63,7 @@ public class Stack {
     
     public void push(int c)
     {
-        if ((sp < tamaño) && (sp >0))
+        if ((this.sp < this.tamaño) && (this.sp >0))
         {           
             datos[sp] = c;            
             sp--;
