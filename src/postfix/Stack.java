@@ -18,14 +18,14 @@ public class Stack {
     public Stack()
     {
         datos = new char[100];
-        sp = 100;
+        sp = 99;
         tamaño = 100;
     }
     
     public Stack(int n)
     {
         datos = new char[n];
-        sp = n;
+        sp = n-1;
         tamaño = n;
     }
     
@@ -55,16 +55,16 @@ public class Stack {
         else
         {
             System.out.println("Stack out of bounds");
-            return (' ');            
+            return (' ');
         }
     }
     
     public void push(char c)
     {
         if ((sp <= tamaño) && (sp >0))
-        {
-            sp--;
+        {            
             datos[sp] = c;
+            sp--;
         }
         else
             System.out.println("Stack out of bounds");
