@@ -13,18 +13,18 @@ package postfix;
 public class Stack {
     private int sp;
     private int tamaño;
-    private char[] datos;
+    private int[] datos;
     
     public Stack()
     {
-        datos = new char[100];
+        datos = new int[100];
         sp = 99;
         tamaño = 100;
     }
     
     public Stack(int n)
     {
-        datos = new char[n];
+        datos = new int[n];
         sp = n-1;
         tamaño = n;
     }
@@ -37,33 +37,35 @@ public class Stack {
             return false;
     }
     
-    public char top()
+    public int top()
     {
-        if (sp <= tamaño)
+        if (sp < tamaño)
             return datos[sp];        
         else
             return (' ');
     }
     
-    public char pop()
+    public int pop()
     {
-        if ((sp <= tamaño) && (sp > 0))
-        {
+        int temp = 0;
+        if ((sp < tamaño) && (sp > 0))
+        {            
             sp++;
-            return datos[sp];            
+            temp = datos[sp];
         }
         else
         {
             System.out.println("Stack out of bounds");
-            return (' ');
+            temp = 0;
         }
+        return temp;
     }
     
-    public void push(char c)
+    public void push(int c)
     {
-        if ((sp <= tamaño) && (sp >0))
-        {            
-            datos[sp] = c;
+        if ((sp < tamaño) && (sp >0))
+        {           
+            datos[sp] = c;            
             sp--;
         }
         else
