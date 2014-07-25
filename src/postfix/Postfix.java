@@ -19,7 +19,7 @@ public class Postfix {
     public static void main(String[] args) {
             
         Scanner entrada_datos  = new Scanner(System.in);
-        System.out.println("Ingrese expresión infix:");
+        System.out.println("Ingrese expresión en prefix:");
         String entrada = entrada_datos.nextLine();
         TPostfix calc = new TPostfix(entrada);
         double res = calc.eval(100);
