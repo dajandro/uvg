@@ -1,32 +1,40 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
+/**
+ * Universidad del Valle de Guatemala
+ * Algoritmos y Estructura de datos
+ * Laboratorio 2
+ * Daniel Orozco
+ * Pablo Díaz
+ * Javier Fong
  */
-
 package postfix;
 
-/**
- *
- * @author Daniel Orozco
- */
+
 public class TPostfix {
+    
     private String exp;
     private int tamaño;
     
     public TPostfix(String s)
+    /**pre: recibe un string de lo ingresado en consola
+    * post: el string es usado como la operacion a realizar
+    */
     {
         exp = s;
     }
     
     public double eval(int n)
+    /**pre: recibe el tamaño de la pila
+    * post: regresa el resultado de la operacion
+    */
     {        
         Stack se = new Stack(n);
         int i = 0;        
+        //se recorre todo el string ingresado
         for (i = 0; i < exp.length(); i++ )
         {
             switch (exp.charAt(i))
             {
+                //si el string es un numero en caracter, se envia a la pila como numero
                 case '0': se.push(0); break;
                 case '1': se.push(1); break;
                 case '2': se.push(2); break;
@@ -37,6 +45,8 @@ public class TPostfix {
                 case '7': se.push(7); break;
                 case '8': se.push(8); break;
                 case '9': se.push(9); break;
+                //cuando se lea la operacion de suma se hace la operacion y se 
+                //envia el resultado a la pila
                 case '+': 
                 {
                     int o1 = se.pop();
@@ -46,6 +56,9 @@ public class TPostfix {
                     break;
                 }
                 case '-':
+                //cuando se lea la operacion de la resta se hace la operacion y se 
+                //envia el resultado a la pila
+                    
                 {
                     int o1 = se.pop();
                     int o2 = se.pop();                    
@@ -54,6 +67,8 @@ public class TPostfix {
                     break;                   
                 }
                 case '*':
+                //cuando se lea la operacion de la mult. se hace la operacion y se 
+                //envia el resultado a la pila
                 {
                     int o1 = se.pop();
                     int o2 = se.pop();                    
@@ -62,6 +77,8 @@ public class TPostfix {
                     break;                    
                 }
                 case '/':
+                 //cuando se lea la operacion de la division se hace la operacion y se 
+                //envia el resultado a la pila
                 {
                     int o1 = se.pop();
                     int o2 = se.pop(); 
@@ -73,8 +90,8 @@ public class TPostfix {
                     se.push(n_res);
                     break;                    
                 }
-            }
-        }
+            }//termina switch
+        }//termina for
         return se.pop();
-    }
+    }//termina método
 }

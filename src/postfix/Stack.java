@@ -1,21 +1,23 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
+/**
+ * Universidad del Valle de Guatemala
+ * Algoritmos y Estructura de datos
+ * Laboratorio 2
+ * Daniel Orozco
+ * Pablo Díaz
+ * Javier Fong
  */
-
 package postfix;
 
-/**
- *
- * @author Daniel Orozco
- */
+
 public class Stack {
-    private int sp;
-    private int tamaño;
-    private int[] datos;
+    
+    private int sp; //atributo que representa el stack pointer de la pila
+    private int tamaño;//atributo que representa el tamaño total de la pila
+    private int[] datos;//atributo tipo vector para meter los valores en la pila
     
     public Stack()
+    //pre: nada
+    //post: inicia la pila con tamaño de 100 y apunta al proximo valor mas grande
     {
         datos = new int[100];
         sp = 99;
@@ -23,32 +25,45 @@ public class Stack {
     }
     
     public Stack(int n)
+   /**pre:constructor que recibe un entero no negativo
+    * post:inicia la pila con el tamaño ingresado y coloca el valor al puntero
+    */
     {
         datos = new int[n];
         sp = n-1;
         tamaño = n;
     }
     
-    public boolean empty()
+    public boolean isempty()
+    /**
+    * post: regresa true si hay un valor en el puntero actual, falso en otro caso
+    */
     {
-        if (sp == tamaño)
+        if (this.sp == this.tamaño)
             return true;
         else
             return false;
     }
     
     public int top()
+    /**
+    * post: regresa el valor de hasta arriba de la pila, si esta vacio 
+    * manda un caracter vacio
+    */
     {
-        if (sp < tamaño)
+        if (this.sp < this.tamaño)
             return datos[sp];        
         else
             return (' ');
     }
     
     public int pop()
+    /**
+    * post: regresa como entero el valor el valor que esta apuntando el puntero
+    */
     {
         int temp = 0;
-        if ((sp < tamaño) && (sp > 0))
+        if ((this.sp < this.tamaño) && (this.sp > 0))
         {            
             sp++;
             temp = datos[sp];
@@ -62,8 +77,12 @@ public class Stack {
     }
     
     public void push(int c)
+    /**pre: recibe un entero como el valor a meter en la pila
+    * post: asigna el valor en la posicion segun el puntero actual 
+    * en caso de llegar a la ultima posicion de la pila se muestra el mensaje de error
+    */
     {
-        if ((sp < tamaño) && (sp >0))
+        if ((this.sp < this.tamaño) && (this.sp >0))
         {           
             datos[sp] = c;            
             sp--;
