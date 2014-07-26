@@ -10,8 +10,7 @@ package postfix;
 
 public class TPostfix {
     
-    private String exp;
-    private int tamaño;
+    private String exp;    
     
     public TPostfix(String s)
     /**pre: recibe un string de lo ingresado en consola
