@@ -20,10 +20,14 @@ public class Postfix {
         Scanner entrada_datos  = new Scanner(System.in);
 //<<<<<<< HEAD        
 //=======
+        // Indicación general al usuario
         System.out.println("Ingrese expresión en postfix:");
 //>>>>>>> origin/master
         String entrada = entrada_datos.nextLine();
+        // Se crea el objeto tipo TPostfix para trabajar la cadena ingresada
         TPostfix calc = new TPostfix(entrada);
+        // Se manda a llamar al método que calcula el valor
+        // El parámetro 100 es variable, este indica el tamaño de la pila
         double res = calc.eval(100);
         System.out.println("Resultado: " + res);
     }    
