@@ -3,8 +3,7 @@
  * Algoritmos y Estructura de datos
  * Laboratorio 2
  * Daniel Orozco
- * Pablo Díaz
- * Javier Fong
+ * Pablo Díaz 
  */
 package postfix;
 
