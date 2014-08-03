@@ -13,25 +13,27 @@ package hojasorts;
  */
 public class Factory {
     
-    private final String entry;
     
-    public Factory(String entry){
-        this.entry=entry;
-    }
+    
     //dependiendo de la entrada se instancia la clase 
-    public BaseSorts getSort(Comparable[] list){
+    public BaseSorts getSort(String entry, Comparable[] list){
     //pre: recibe una lista de tipo comparable
     //post: devuelve una clase del tipo base sort que ordena la lista
         
-        if (this.entry.equals("1"))
+        //se manda como parámetro la lista desordenada y el método la ordena
+        
+        
+        if (entry.equals("1"))
             return new InsertionSort(list);
-        if (this.entry.equals("2"))
-            return new BubbleSort(list);
-        if (this.entry.equals("3"))
-            return null; //QuickSort(list)
+        if (entry.equals("2"))
+            return  new BubbleSort(list);
+        if (entry.equals("3"))
+            return new QuickSort(list);
         else
-            return null;//MergeSort(list)
+            return new MergeSort(list);
+       
         
     }
 
+   
 }

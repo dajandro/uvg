@@ -23,79 +23,92 @@ public class HojaSorts {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-        
-       //se crean 2 mil números aleatorios y se guardan en un arreglo tipo comparable
-        Comparable[] list = new Comparable[2000];
-        
         Scanner teclado = new Scanner (System.in);
+      
+        System.out.println("Programa que implementa algoritmos de ordenamiento");
+        
+        
+        
+        System.out.println("1.Generar nuevos números aleatorios");
+        System.out.println("2. Utilizar números almacenados en el archivo");
+        System.out.print("Ingrese opción: ");
+        String entrada_ini = teclado.next();
+        
+        
+        //se declara la lista donde se van a guardar los números
+        Comparable[] list;
         
         System.out.println("1. Insertion Sort");
         System.out.println("2. Bubble Sort");
         System.out.println("3. Quick Sort");
         System.out.println("4. Merge Sort");
-        System.out.println("Ingrese el número que desea:");
+        System.out.print("Ingrese el número de algoritmo que desea:");
         String entry=teclado.next();
+        
+       //clase para guardar y leer en un archivo toda la info generada
+        FileProject Archivo = new FileProject();
+        
        
         
-
-        Random aleatorio=new Random();
-        for (int j=0;j<2000;j++){
-            list[j]=aleatorio.nextInt(2000)+1;
+        if (entrada_ini.equals("1")){
+            
+            System.out.print("Ingrese el tamaño del  nodo:");
+            int tamaño = teclado.nextInt();
+            //se instancia la clase nodo con el tamaño ingresado
+            list= new Nodo[tamaño]; 
+            //se crean todos los números aleatorios en cada posicion del nodo
+            Random aleatorio=new Random();
+            for (int j=0;j<tamaño;j++){
+                list[j]=new Nodo(aleatorio.nextInt(tamaño)+1);
+            }
+            Archivo.CrearArchivo(list);//se crea el archivo con números desordenados
         }
-        
-             
-        /**
-         * Aqui se tien tiene que guardar los 2000 mil números desordenados en un archivo
-         */
-        
+        else{
+           
+           //devuelve lista tipo comparable con los números del archivo 
+           list = Archivo.LeerArchivo();
+           
+               
+        }
+        System.out.println("");
+        System.out.println("El arreglo antes de pasar por el algoritmo es: ");
+        //se muestra el arreglo antes del algorimto
+        System.out.print("[");
+        for (int j =0; j < list.length; j++){
 
+            System.out.print(list[j].toString().concat(", ")); 
+        }
+        System.out.print("]\n");
+        System.out.println("");
         //El factory decide que clase instanciar
-        Factory _nFactory = new Factory(entry);
-
         //se manda como parámetro la lista desordenada y el método la ordena
-        BaseSorts sort= _nFactory.getSort(list);
-
-        //se guarda la lista de números en la clase base
+        
+       
+        Factory _nFactory = new Factory();
+       
+        BaseSorts sort= _nFactory.getSort(entry, list);
+        
+         //se guarda la lista de números en la clase base
         sort.setListaNumeros(list);
+         //se muestra el arreglo ordenado
+        
+        
 
         /**
          * Aqui se tienen que guardar los 2000 mil números ya ordenados
          * en otro archivo
          */
-
+        
+        Archivo.CrearArchivoOrdenado(sort.getListaNumeros());
+        System.out.println("");
+        System.out.println("El arreglo tras pasar por el algoritmo es: ");
         //se muestra el arreglo ordenado
         System.out.print("[");
-        for (int j =0; j < 2000; j++){
+        for (int j =0; j < sort.getListaNumeros().length; j++){
 
             System.out.print(sort.getListaNumeros()[j].toString().concat(", ")); 
         }
         System.out.print("]\n");
-
-
-
-
-        /*
-        String[] numerosGenerados=new String[2000];
-        FileProject Archivo = new FileProject();
-        Archivo.CrearArchivo();
-        Archivo.LeerArchivo();
-        numerosGenerados = Archivo.getNumerosGenerados();
-        Sorting.selectionSort(numerosGenerados); 
-
-        System.out.print("[");
-        for (int j =0; j < 2000; j++){
-
-            System.out.print(numerosGenerados[j]+" \n"); 
-        }
-        System.out.print("]\n");
-
-        Archivo.setNumerosGenerados(numerosGenerados);
-        Archivo.CrearArchivoOrdenad();
-
-        */
-
-
-
         
     }
 

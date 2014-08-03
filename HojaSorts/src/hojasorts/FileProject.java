@@ -20,17 +20,20 @@ import java.util.Vector;
  */
 public class FileProject {
     
-    private String[] numerosGenerados=new String[2000];
+    
 
     public FileProject() {
        
     }
+
+   
     
-    public void CrearArchivo(){
+    
+    public void CrearArchivo(Comparable[] numerosGenerados){
         try {
             
-                String[] numeroRandom=null;
-                Random aleatorio = new Random();
+                
+                
 
 
                 File file = new File("src/hojasorts/NumerosAleatorios.txt");
@@ -42,9 +45,9 @@ public class FileProject {
 
                 FileWriter fw = new FileWriter(file);
                 BufferedWriter bw = new BufferedWriter(fw);
-                for (int i=0;i<2000;i++)
+                for (int i=0;i<numerosGenerados.length;i++)
                 {
-                   bw.write(Integer.toString(aleatorio.nextInt(2000)+1)+"\n");
+                   bw.write(numerosGenerados[i].toString()+"\n");
                 }
 
                 bw.close();
@@ -56,26 +59,34 @@ public class FileProject {
         }
     }
     
-    public void LeerArchivo(){
-        
+    public Comparable[] LeerArchivo(){
+      
         int contador=0;
-         
+        int tamaño=0;
         BufferedReader br = null;
  
         try {
 
                 String sCurrentLine;
-                 File file = new File("src/hojasorts/NumerosAleatorios.txt");
+                 File file = new File("src/hojasorts/NumerosOrdenados.txt");
                 br = new BufferedReader(new FileReader(file));
 
                
+               
+               while ((sCurrentLine = br.readLine()) != null) {
+                    
+                    tamaño++;
+                
+                }
+               br = new BufferedReader(new FileReader(file));
+               Comparable[] list = new Nodo[tamaño];
                 while ((sCurrentLine = br.readLine()) != null) {
-                    this.numerosGenerados[contador]=sCurrentLine;
+                    list[contador]=new Nodo(Integer.parseInt(sCurrentLine));
                     contador++;
                 
                 }
                 
-
+        return list;
         } catch (IOException e) {
                 e.printStackTrace();
         } finally {
@@ -85,18 +96,12 @@ public class FileProject {
                         ex.printStackTrace();
                 }
         }
+        return null;
         
     }
 
-    public String[] getNumerosGenerados() {
-        return numerosGenerados;
-    }
-
-    public void setNumerosGenerados(String[] numerosGenerados) {
-        this.numerosGenerados = numerosGenerados;
-    }
     
-    public void CrearArchivoOrdenad(){
+    public void CrearArchivoOrdenado(Comparable[] numerosGenerados){
         
          try {
             
@@ -112,9 +117,9 @@ public class FileProject {
 
                 FileWriter fw = new FileWriter(file);
                 BufferedWriter bw = new BufferedWriter(fw);
-                for (int i=0;i<2000;i++)
+                for (int i=0;i<numerosGenerados.length;i++)
                 {
-                   bw.write(this.numerosGenerados[i]+"\n");
+                   bw.write(numerosGenerados[i]+"\n");
                 }
 
                 bw.close();

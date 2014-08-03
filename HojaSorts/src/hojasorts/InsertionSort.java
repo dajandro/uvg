@@ -12,36 +12,43 @@ package hojasorts;
  * @author Pablo
  */
 public class InsertionSort extends BaseSorts{
-
-    public InsertionSort(Comparable[] listaNumeros) {
-    //pre: recibe un arreglo de tipo comparable desordenado
+    
+    public InsertionSort(){
+        
+    }
+    
+    public InsertionSort(Comparable[] lista) 
+   //pre: recibe un arreglo de tipo comparable desordenado
    //post: ordena el arreglo de forma ascendente
    {
-      
+       
        int numSorted =1;
-       Comparable temp;
+       
        int index;
-       while(numSorted<listaNumeros.length)
+       while(numSorted<lista.length)
        {
            //se toma el primer valor no ordenado
-           temp=listaNumeros[numSorted];
+           Comparable temp=lista[numSorted];
            //se inserta en la parte del arreglo ordenado
            for(index=numSorted;index>0;index--)
            {
-               if ((temp.compareTo(listaNumeros[index-1]))>0)
+              
+               if (temp.compareTo(lista[index-1])>0)
                {
-                   listaNumeros[index]=listaNumeros[index-1];
+                   lista[index]=lista[index-1];
                }
                else
                    break;
            }
            //se reinserta el valor
-           listaNumeros[index]=temp;
+           lista[index]=temp;
            numSorted++; //aumenta la cantidad de números ordenados
        }//termina while
+       
+       
+       
    }//termina insertion sort ascendente
         
-        
-    } 
-
+    
+    
 }
