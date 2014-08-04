@@ -1,5 +1,10 @@
  /*
  * Universidad del Valle de Guatemala
+ * Pablo Díaz
+ * Daniel Orozco
+ * Diego Jacobs
+ * Roberto Chiroy
+ * Clase que maneja archivos
  * 
  */
 

@@ -1,7 +1,10 @@
 
 /**
 * Universidad del Valle de Guatemala
-* Pablo Diaz 13203
+* Pablo Díaz
+* Daniel Orozco
+* Diego Jacobs
+* Roberto Chiroy
 * Clase que crea 2000 mil números aleatorios y permite ordenarlos con 4 
 * algoritmos de ordenamiento 
 * Se guardan los números ordenados en otro archivo

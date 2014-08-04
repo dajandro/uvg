@@ -2,7 +2,10 @@ package hojasorts;
 
 /*
  * Universidad del Valle de Guatemala
- * Pablo Díaz 13203
+ * Pablo Díaz
+ * Daniel Orozco
+ * Diego Jacobs
+ * Roberto Chiroy
  */
 
 public class Nodo implements Comparable {

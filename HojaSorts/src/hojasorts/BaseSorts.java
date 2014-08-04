@@ -1,6 +1,9 @@
 /*
  * Universidad del Valle de Guatemala
- * Pablo Díaz 13203
+ * Pablo Díaz
+ * Daniel Orozco
+ * Diego Jacobs
+ * Roberto Chiroy
  * Clase que sirve como base para instanciar 4 algoritmos de ordenamiento
  * Se hace una clase para cada sort
  */

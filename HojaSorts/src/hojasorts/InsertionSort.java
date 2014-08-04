@@ -1,6 +1,9 @@
 /*
  * Universidad del Valle de Guatemala
- * Pablo Díaz 13203
+ * Pablo Díaz
+ * Daniel Orozco
+ * Diego Jacobs
+ * Roberto Chiroy
  * Clase que ordena una lista con el algoritmo de insertion Sort
  * InsertionSort.java
  */
