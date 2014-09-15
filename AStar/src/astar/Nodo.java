@@ -3,92 +3,97 @@ package astar;
 import java.util.ArrayList;
 
 
-
-
-/**
-* Universidad Del Valle 
-* Pablo Díaz 13203
-*/
-
-/**
- *
- * @author Pablo
- */
-public class Nodo implements Comparable<Nodo>{
-    
-    private boolean isTerminado;
-    private boolean isMeta;
-    private boolean isObstaculo;
-    private boolean isVisitado;
-    private boolean isRaiz;
-    private Nodo raiz;
-    private Nodo arriba;
-    private Nodo abajo;
-    private Nodo izq;
-    private Nodo der;
-    private Grafo mapa;
-
-    private int x;
-    private int y;
-
-    private double funcionh;//costo de llegar a la meta desde el nodo actual
-    private double funciong;//costo de llegar al nodo actual desde la meta
-    
-    private final int costoVertical=0;
-    private final int costoHorizontal=0;
-    
-    public Nodo(int x, int y, Grafo mapa) {
-        this.x = x;
-        this.y = y;
-        this.isVisitado= false;
-        this.funciong = costoVertical;
-        this.isObstaculo = false;
-        this.isRaiz = false;
-        this.isMeta = false;
-        this.mapa = mapa;
-	}
-    
-    public ArrayList<Nodo> getNeighborsList() 
-    {
-        ArrayList<Nodo> listaNodoAdyacente = new ArrayList<Nodo>();
-        
-	if (y != 0) {
-                listaNodoAdyacente.add(mapa.getNodo(x, (y - 1)));
-        }
-        if (y != 0 && x != mapa.getAncho()- 1) {
-                listaNodoAdyacente.add(mapa.getNodo(x + 1, y - 1));
-        }
-        if (x != (mapa.getAncho()- 1)) {
-                listaNodoAdyacente.add(mapa.getNodo(x + 1, y));
-        }
-        if ((x != (mapa.getAncho() - 1)) && (y != (mapa.getAlto() - 1))) {
-                listaNodoAdyacente.add(mapa.getNodo(x + 1, y + 1));
-        }
-        if (y != (mapa.getAlto() - 1)) {
-                listaNodoAdyacente.add(mapa.getNodo(x, y + 1));
-        }
-        if (x != 0 && y != (mapa.getAlto() - 1)) {
-                listaNodoAdyacente.add(mapa.getNodo(x - 1, y + 1));
-        }
-        if (x != 0) {
-                listaNodoAdyacente.add(mapa.getNodo(x - 1, y));
-        }
-        if (x != 0 && y != 0){
-                listaNodoAdyacente.add(mapa.getNodo(x - 1, y - 1));
-        }
-        Object[] lol = listaNodoAdyacente.toArray();
-        for (int i=0;i<lol.length;i++){
-            System.out.println(lol[i].toString());
-        }
-        return listaNodoAdyacente;
-    }
+public class Nodo implements Comparable<Nodo> {
+	private boolean isObstaculo;
+	private Nodo raiz;
+	private Grafo grafo;
+	private int x;
+	private int y;
+	private double funcionHeursitica;//costo del camino nodo actual al final -> Greedy
+	private double funcionG; //costo del mejor camino encontrado->Dijsktra
 	
+	
+	
+	public Nodo(int x, int y, Grafo grafo) {
+            this.x = x;
+            this.y = y;
+            this.funcionG = Integer.MAX_VALUE;
+            this.isObstaculo = false;
+            this.grafo = grafo;
+	}
+	
+	public boolean equals(Nodo nodo) {
+		return (this.x == nodo.x) && (this.y == nodo.y);
+	}
+	
+	
+	public ArrayList<Nodo> getNodosAdyacente() {
+            ArrayList<Nodo> nodosAdyacentes = new ArrayList<>();
+            if ((y != 0)) 
+            {
+                    nodosAdyacentes.add(grafo.getNodo(x, (y - 1)));
+            }
+            if ((y != 0) && !(x == (grafo.getAncho() - 1))) 
+            {
+                    nodosAdyacentes.add(grafo.getNodo(x + 1, y - 1));
+        
+            }
+            if ((x != (grafo.getAncho() - 1))) {
+                    nodosAdyacentes.add(grafo.getNodo(x + 1, y));
+       
+            }
+            /*if ((x != (map.width - 1)) && !(y == (map.height - 1))) 
+            {
+                    neighborList.add(map.getNode(x + 1, y + 1));
+        
+            }*/
+            if ((y != (grafo.getAlto() - 1)))
+            {
+                    nodosAdyacentes.add(grafo.getNodo(x, y + 1));
 
-    public boolean equals(Nodo nodo) 
-    {
-        return (this.x == nodo.getX()) && (this.y == nodo.getY());
+            }
+            if ((x != 0) && (y != (grafo.getAlto() - 1)))
+            {
+                    nodosAdyacentes.add(grafo.getNodo(x - 1, y + 1));
+       
+            }
+            if ((x != 0)) 
+            {
+                nodosAdyacentes.add(grafo.getNodo(x - 1, y));
+         
+            }
+            if ((x != 0) && (y != 0)) 
+            {
+                nodosAdyacentes.add(grafo.getNodo(x - 1, y - 1));
+         
+            }
+            return nodosAdyacentes;
+	}
+
+    public boolean isIsObstaculo() {
+        return isObstaculo;
     }
-    
+
+    public void setIsObstaculo(boolean isObstaculo) {
+        this.isObstaculo = isObstaculo;
+    }
+
+    public Nodo getRaiz() {
+        return raiz;
+    }
+
+    public void setRaiz(Nodo raiz) {
+        this.raiz = raiz;
+    }
+
+    public Grafo getGrafo() {
+        return grafo;
+    }
+
+    public void setGrafo(Grafo grafo) {
+        this.grafo = grafo;
+    }
+
     public int getX() {
         return x;
     }
@@ -105,18 +110,31 @@ public class Nodo implements Comparable<Nodo>{
         this.y = y;
     }
 
-    @Override//comparar las distancias entre dos nodos
-    public int compareTo(Nodo other) 
-    {
-        double distanciaTotal = this.funciong + this.funcionh;
-	double otraDistanciaTotal = other.funciong + other.funcionh;
-        if (distanciaTotal < otraDistanciaTotal)
-                return -1; 
-        if (otraDistanciaTotal < distanciaTotal)
-                return 1;
-        return 0;//si las distancias son iguales regresa 0
-
+    public double getFuncionHeursitica() {
+        return funcionHeursitica;
     }
 
-    
+    public void setFuncionHeursitica(double funcionHeursitica) {
+        this.funcionHeursitica = funcionHeursitica;
+    }
+
+    public double getFuncionG() {
+        return funcionG;
+    }
+
+    public void setFuncionG(double funcionG) {
+        this.funcionG = funcionG;
+    }
+
+        
+	@Override
+	public int compareTo(Nodo other) {
+		double totalDistanceFromGoal = this.funcionG + this.funcionHeursitica;
+		double otherDistanceFromGoal = other.funcionG + other.funcionHeursitica;
+		if (totalDistanceFromGoal < otherDistanceFromGoal)
+			return -1;
+		if (otherDistanceFromGoal < totalDistanceFromGoal)
+			return 1;
+		return 0;
+	}
 }

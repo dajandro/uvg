@@ -1,54 +1,37 @@
-/**
-* Universidad Del Valle 
-* Pablo Díaz 13203
-* Adolfo Morales 13014
-*/
-
 package astar;
-
 import java.util.ArrayList;
 
-/**
- *
- * @author Pablo
- */
+
 public class Grafo {
-   private int ancho;
-   private int alto;
-   private ArrayList<ArrayList<Nodo>> mapa;
-   
-   public Grafo(int x, int y)
-   {
-       this.ancho=x;
-       this.alto=y;
-       crearGrafo();
-   }
-   
-   public Nodo getNodo(int x, int y) {
-        return mapa.get(x).get(y);
+    private int ancho;
+    private int alto;
+    private ArrayList<ArrayList<Nodo>> grafo;
+
+    public Grafo(int w, int h) {
+        this.ancho = w;
+        this.alto = h;
+
+        crearGrafo();
     }
-   private void crearGrafo()
-   {
-        Nodo node;
-        mapa = new ArrayList<ArrayList<Nodo>>();
-        for (int y = 0; y < this.alto; y++) 
+
+    public Nodo getNodo(int x, int y) {
+        return grafo.get(y).get(x);
+    }
+
+    private void crearGrafo() 
+    {
+        Nodo nodo;
+        grafo = new ArrayList<>();
+        for (int y = 0; y < alto; y++) 
         {
-            mapa.add(new ArrayList<Nodo>());
-            for (int x = 0; x < this.ancho; x++) {
-                    node = new Nodo(x, y, this);
-                    mapa.get(y).add(node);
+            grafo.add(new ArrayList<>());
+            for (int x = 0; x < ancho; x++)
+            {
+                nodo = new Nodo(x, y, this);
+                grafo.get(y).add(nodo);
             }
         }
     }
-   public void obtenerGrafo(){
-        for (int y = 0; y < this.alto; y++) 
-        {
-            mapa.get(y);
-            for (int x = 0; x < this.ancho; x++) {
-                   mapa.get(x).get(x);
-            }
-        }
-   }
 
     public int getAncho() {
         return ancho;
@@ -66,12 +49,12 @@ public class Grafo {
         this.alto = alto;
     }
 
-    public ArrayList<ArrayList<Nodo>> getMapa() {
-        return mapa;
+    public ArrayList<ArrayList<Nodo>> getGrafo() {
+        return grafo;
     }
 
-    public void setMapa(ArrayList<ArrayList<Nodo>> mapa) {
-        this.mapa = mapa;
+    public void setGrafo(ArrayList<ArrayList<Nodo>> grafo) {
+        this.grafo = grafo;
     }
-   
+        
 }
