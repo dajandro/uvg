@@ -1,6 +1,5 @@
 package astar;
 import java.util.ArrayList;
-import java.util.Random;
 /**
 * Universidad Del Valle 
 * Pablo Díaz 13203
