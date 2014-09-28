@@ -103,10 +103,7 @@ public class starM {
             JOptionPane.YES_NO_CANCEL_OPTION,JOptionPane.QUESTION_MESSAGE,null,    // null para icono por defecto.
             new Object[] { "Grafo sin obstáculos", "Grafo con obstáculos"},"Grafo sin obstáculos");
             
-        /* Condicion para saber si el grafo cuenta con obstaculo o no */
-        if (decision2 == 1){
-            obstaculo = true;
-        }else obstaculo = false;
+       
         /** Se ejecuta el algoritmo de camino mas corto segun el tamanho del grafo**/
           
         int[] arregloDistri2 = LeerArchivo(225);
@@ -125,6 +122,11 @@ public class starM {
             case 0:
 
                 Astar astar = new Astar(tamanio, tamanio, arregloDistri2);
+                        /* Condicion para saber si el grafo cuenta con obstaculo o no */
+               if (decision2 == 1){
+                  astar.getGrafo().crearOstaculo15x15();
+               } 
+               
 
                 astar.calcular(diagonales,false);
 

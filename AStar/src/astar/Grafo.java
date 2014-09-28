@@ -99,5 +99,32 @@ public class Grafo {
     public void setDiagonalesNodos(int[] diagonalesNodos) {
         this.diagonalesNodos = diagonalesNodos;
     }
+     public void crearOstaculo4x4() {
+       grafo.get(1).get(1).setIsObstaculo(true);
+        grafo.get(2).get(2).setIsObstaculo(true);
+        grafo.get(1).get(2).setIsObstaculo(true);
+    }
+    
+    public void crearOstaculo15x15() {
+        grafo.get(6).get(7).setIsObstaculo(true);
+        grafo.get(7).get(7).setIsObstaculo(true);
+        grafo.get(3).get(7).setIsObstaculo(true);
+        grafo.get(4).get(7).setIsObstaculo(true);
+        grafo.get(5).get(7).setIsObstaculo(true);
+        grafo.get(7).get(8).setIsObstaculo(true);
+        grafo.get(7).get(9).setIsObstaculo(true);
+    }
+    
+    public void crearOstaculo20x20() {
+        grafo.get(6).get(7).setIsObstaculo(true);
+        grafo.get(7).get(7).setIsObstaculo(true);
+        grafo.get(3).get(7).setIsObstaculo(true);
+        grafo.get(4).get(7).setIsObstaculo(true);
+        grafo.get(5).get(7).setIsObstaculo(true);
+        grafo.get(7).get(8).setIsObstaculo(true);
+        grafo.get(7).get(9).setIsObstaculo(true);
+        grafo.get(7).get(10).setIsObstaculo(true);
+        grafo.get(7).get(11).setIsObstaculo(true);
+    }
     
 }

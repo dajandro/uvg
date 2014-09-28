@@ -26,8 +26,8 @@ public class Astar {
     public Astar(int ancho, int alto, int[] arregloDistri) 
     {
         this.grafo = new Grafo(ancho, alto, arregloDistri);
-        this.inicio = new Nodo(0, 0, grafo);
-        this.destino = new Nodo(ancho-1, alto-1, grafo);
+        this.inicio = new Nodo(0, alto-1, grafo);
+        this.destino = new Nodo(ancho-1, 0, grafo);
         
         
     }
@@ -135,7 +135,7 @@ public class Astar {
         //se realiza un promedio de distancia manhattan de 8 movimientos y 4 movimientos
         double promedio = ((D*(dx+dy)+(D2-2*D)*Math.min(dx,dy))+(D*(dx+dy)))/2;
         if (diagonales)
-            return promedio*(1.0+p);//normal heuristics
+            return promedio;//normal heuristics
         return (D*(dx+dy))+Math.abs(dx1*dz-dw*dy1); //normal heuristic + cross breaking ties
        
     }
